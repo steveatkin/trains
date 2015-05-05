@@ -1,3 +1,4 @@
+/*
 The MIT License (MIT)
 
 Copyright (c) 2015 IBM
@@ -19,3 +20,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+
+package com.ibm.subway;
+
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class StationList {
+	
+	@JsonProperty("data")
+	private ArrayList<Station> stations = new ArrayList<Station>();
+
+	@JsonProperty("data")
+	public ArrayList<Station> getStationList() {
+		return stations;
+	}
+	
+	@JsonProperty("data")
+	public void setStationList(ArrayList<Station> s) {
+		stations = s;
+	}
+}

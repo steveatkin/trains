@@ -1,3 +1,4 @@
+/*
 The MIT License (MIT)
 
 Copyright (c) 2015 IBM
@@ -19,3 +20,51 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+*/
+
+package com.ibm.subway;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Train {
+	@JsonProperty("route")
+	private String route = "";
+	
+	@JsonProperty("time")
+	private String time = "";
+	
+	@JsonProperty("direction")
+	private String direction = "";
+	
+	@JsonProperty("route")
+	public String getRoute() {
+		return route;
+	}
+	
+	@JsonProperty("route")
+	public void setRoute(String r) {
+		route = r;
+	}
+	
+	@JsonProperty("time")
+	public String getTime() {
+		return time;
+	}
+	
+	@JsonProperty("time")
+	public void setTime(String t) {
+		time = t;
+	}
+	
+	@JsonProperty("direction")
+	public String getDirection() {
+		return direction;
+	}
+	
+	@JsonProperty("direction")
+	public void setDirection(String d) {
+		direction = d;
+	}
+}
