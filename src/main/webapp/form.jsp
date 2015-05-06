@@ -328,16 +328,16 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
     $(tableId).bootstrapTable({
       	columns: [
       		{
-      			field: 'route',
-      			title: '<%=res.getString("route")%>'
+      			field: "route",
+      			title: "<%=res.getString("route")%>"
       		},
       		{
-      			field: 'time',
-      			title: '<%=res.getString("time")%>'
+      			field: "time",
+      			title: "<%=res.getString("time")%>"
       		},
       		{
-      			field: 'direction',
-      			title: '<%=res.getString("direction")%>'
+      			field: "direction",
+      			title: "<%=res.getString("direction")%>"
       		}
       	]
      });
@@ -377,12 +377,12 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
       $(tableId).bootstrapTable({
       	columns: [
       		{
-      			field: 'screenName',
-      			title: '<%=res.getString("screen_name_table")%>'
+      			field: "screenName",
+      			title: "<%=res.getString("screen_name_table")%>"
       		},
       		{
-      			field: 'tweet',
-      			title: '<%=res.getString("message_table")%>'
+      			field: "tweet",
+      			title: "<%=res.getString("message_table")%>"
       		}
       	]
       });
