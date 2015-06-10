@@ -33,6 +33,7 @@ THE SOFTWARE.
 <%@ page import="com.ibm.gaas.ServiceAccount" %>
 <%@ page import="com.ibm.gaas.CloudResourceBundleControl" %>
 <%@ page import="com.ibm.globalization.Globalization" %>
+<%@ page import="org.apache.commons.lang.StringEscapeUtils" %>
 
 <%
 //ResourceBundle res=ResourceBundle.getBundle( "com.ibm.trains", request.getLocale());
@@ -413,7 +414,7 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
       },false);
 
       } else {
-      	alert('<%=res.getString("sse_error")%>');
+      	alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
     }
     return false;
   }
@@ -452,7 +453,7 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
         source.close();
       }, false);
     } else {
-      alert('<%=res.getString("sse_error")%>');
+      alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
     }
     return false;
   }
@@ -484,7 +485,7 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
         source.close();
       }, false);
     } else {
-      alert('<%=res.getString("sse_error")%>');
+      alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
     }
     return false;
   }
