@@ -28,18 +28,32 @@ THE SOFTWARE.
 <%@ page import="java.util.ResourceBundle"%>
 <%@ page import="java.net.URL" %>
 <%@ page import="java.util.ResourceBundle.Control" %>
+<<<<<<< HEAD
+<%@ page import="com.ibm.gaas.client.ServiceAccount" %>
+<%@ page import="com.ibm.gaas.client.rb.CloudResourceBundle" %>
+<%@ page import="com.ibm.gaas.client.rb.CloudResourceBundleControl" %>
+=======
 <%@ page import="com.ibm.gaas.ServiceAccount" %>
 <%@ page import="com.ibm.gaas.CloudResourceBundle" %>
 <%@ page import="com.ibm.gaas.CloudResourceBundleControl" %>
+>>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 <%@ page import="com.ibm.globalization.Globalization" %>
 
 
 <%
+<<<<<<< HEAD
 //ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocale());
 
 ServiceAccount account = ServiceAccount.getInstance();
 Control control = CloudResourceBundleControl.getInstance(account, ResourceBundle.Control.TTL_DONT_CACHE);
 ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocale(), control);
+=======
+//ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.getLocale());
+
+ServiceAccount account = ServiceAccount.getInstance();
+Control control = CloudResourceBundleControl.getInstance(account, ResourceBundle.Control.TTL_DONT_CACHE);
+ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.getLocale(), control);
+>>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 %>
 
 <!DOCTYPE html>
