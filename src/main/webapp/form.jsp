@@ -29,32 +29,18 @@ THE SOFTWARE.
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="java.net.URL" %>
 <%@ page import="java.util.ResourceBundle.Control" %>
-<<<<<<< HEAD
-<%@ page import="com.ibm.gaas.client.ServiceAccount" %>
-<%@ page import="com.ibm.gaas.client.rb.CloudResourceBundle" %>
-<%@ page import="com.ibm.gaas.client.rb.CloudResourceBundleControl" %>
-=======
-<%@ page import="com.ibm.gaas.CloudResourceBundle" %>
-<%@ page import="com.ibm.gaas.ServiceAccount" %>
-<%@ page import="com.ibm.gaas.CloudResourceBundleControl" %>
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
+<%@ page import="com.ibm.g11n.pipeline.client.ServiceAccount" %>
+<%@ page import="com.ibm.g11n.pipeline.client.rb.CloudResourceBundle" %>
+<%@ page import="com.ibm.g11n.pipeline.client.rb.CloudResourceBundleControl" %>
+<%@ page import="com.ibm.g11n.pipeline.client.rb.CloudResourceBundleControl.LookupMode" %>
 <%@ page import="com.ibm.globalization.Globalization" %>
 <%@ page import="org.apache.commons.lang.StringEscapeUtils" %>
 
 <%
-<<<<<<< HEAD
 //ResourceBundle res=ResourceBundle.getBundle( "com.ibm.trains", request.getLocale());
-
 ServiceAccount account = ServiceAccount.getInstance();
-Control control = CloudResourceBundleControl.getInstance(account, ResourceBundle.Control.TTL_DONT_CACHE);
+Control control = CloudResourceBundleControl.getInstance(account, CloudResourceBundleControl.LookupMode.LOCAL_THEN_REMOTE);
 ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocale(), control);
-=======
-//ResourceBundle res=ResourceBundle.getBundle( "com.ibm.translation", request.getLocale());
-
-ServiceAccount account = ServiceAccount.getInstance();
-Control control = CloudResourceBundleControl.getInstance(account, ResourceBundle.Control.TTL_DONT_CACHE);
-ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.getLocale(), control);
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 %>
 
 <!DOCTYPE html>
@@ -131,7 +117,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
            </div>
 
 
-<<<<<<< HEAD
     <label for="routeList" class="control-label"><%=res.getString("route_list")%></label>
     <div class="form-group">
       <select class="selectpicker form-control" data-width="auto" id="routeList" title='<%=res.getString("select_list")%>'>
@@ -162,40 +147,11 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
         </option>
         <option value="S" data-url="http://en.wikipedia.org/wiki/42nd_Street_Shuttle">
           <%=res.getString("routes")%>
-=======
-           <label for="datepicker" class="control-label"><%=res.getString("date")%></label>
-    <div class="form-group">
-      <div class="input-append date" id="datePicker">
-        <input class="span2" size="18" type="text">
-        <span class="add-on"><i class="glyphicon glyphicon-th"></i></span>
-      </div>
-    </div>
-
-    <label for="bestSellerList" class="control-label"><%=res.getString("book_list")%></label>
-    <div class="form-group">
-      <select class="selectpicker form-control" data-width="auto" id="bestSellerList" title='<%=res.getString("select_list")%>'>
-        <option data-hidden="true"></option>
-        <option value="combined-print-and-e-book-fiction">
-          <%=res.getString("combined_fiction")%>
-        </option>
-        <option value="combined-print-and-e-book-nonfiction">
-          <%=res.getString("combined_nonfiction")%>
-        </option>
-        <option value="hardcover-fiction">
-          <%=res.getString("hardcover_fiction")%>
-        </option>
-        <option value="hardcover-nonfiction">
-          <%=res.getString("hardcover_nonfiction")%>
-        </option>
-        <option value="trade-fiction-paperback">
-          <%=res.getString("paperback_fiction")%>
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
         </option>
       </select>
 
     </div>
 
-<<<<<<< HEAD
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -208,16 +164,10 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%=res.getString("panel_ny_subway")%></h3>
-=======
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%=res.getString("panel_ny_times")%></h3>
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
       </div>
 
              <div class="panel-body">
                <div class="panel-group" id="accordionPanel">
-<<<<<<< HEAD
                  <div class="accordion" id="accordion" >
                        <div class="panel panel-default template" style="display: none;">
                          <div class="panel-heading">
@@ -232,55 +182,12 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
                       <div class="col-md-12 column-white">
                         <span class="label label-primary"><%=res.getString("twitter")%></span>
                              <table data-toggle="table" class="table" id="table-tweets">
-=======
-                 <div class="accordion" id="accordion" style="display: none;">
-                   <% for(int i=0 ; i < 20; ++i) { %>
-                       <div class="panel panel-default">
-                         <div class="panel-heading">
-                           <h4 class="panel-title">
-							<a id="anchor<%=i%>" data-toggle="collapse" data-parent="#accordion" href="#accordion<%=i%>"></a>
-							</h4>
-                          </div>
-                          <div id="accordion<%=i%>" class="panel-collapse collapse" data-book="" data-number=<%=i%>>
-                  <div class="panel-body">
-
-                    <div class="row-fluid">
-                      <div class="col-md-10 column-white">
-                        <span class="label label-primary"><%=res.getString("description")%></span>
-                              <p id="description<%=i%>"></p>
-                      </div>
-                      <div class="col-md-2 column-white">
-                        <span class="label label-primary"><%=res.getString("weeks")%></span>
-                              <p id="weeks<%=i%>"></p>
-                      </div>
-                    </div>
-
-                    <div class="row-fluid">
-                      <div class="col-md-12 column-white">
-                        <span class="label label-primary"><%=res.getString("dream_books")%></span>
-                             <table data-toggle="table" class="table" id="criticTable<%=i%>">
-                          <thead>
-                            <tr>
-                              <th data-field="snippet">
-                                <%=res.getString("snippet")%>
-                              </th>
-                              <th data-field="source">
-                                <%=res.getString("source")%>
-                              </th>
-                              <th data-field="polarity" data-formatter="polarityFormatter">
-                                <%=res.getString("polarity")%>
-                              </th>
-                              <th data-field="link" data-visible="false"></th>
-                            </tr>
-                          </thead>
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
                         </table>
                       </div>
                     </div>
 
                     <div class="row-fluid">
                       <div class="col-md-12 column-white">
-<<<<<<< HEAD
                         <span class="label label-primary"><%=res.getString("sentiment")%></span>
                           <p>
                            <span class="badge badge-positive" id="badgePositive">0</span>
@@ -288,29 +195,10 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
                           <span class="badge badge-neutral" id="badgeNeutral">0</span>
                           <br>
                           <span class="badge badge-negative" id="badgeNegative">0</span>
-=======
-                        <span class="label label-primary"><%=res.getString("word_cloud")%></span>
-                             <div id="cloud<%=i%>">
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="row-fluid">
-                      <div class="col-md-12 column-white">
-                        <span class="label label-primary"><%=res.getString("sentiment")%></span>
-                          <p>
-                           <span class="badge badge-positive" id="badgePositive<%=i%>">0</span>
-                          <br>
-                          <span class="badge badge-neutral" id="badgeNeutral<%=i%>">0</span>
-                          <br>
-                          <span class="badge badge-negative" id="badgeNegative<%=i%>">0</span>
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
                         </p>
                       </div>
                     </div>
 
-<<<<<<< HEAD
                     <div class="row-fluid">
                       <div class="col-md-12 column-white">
                         <span class="label label-primary"><%=res.getString("trains")%></span>
@@ -321,33 +209,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
                   </div>
                 </div>
               </div>
-=======
-
-                    <div class="row-fluid">
-                      <div class="col-md-12 column-white">
-                        <span class="label label-primary"><%=res.getString("twitter")%></span>
-                             <table data-toggle="table" class="table" id="table<%=i%>">
-                          <thead>
-                            <tr>
-                              <th data-field="screenName">
-                                <%=res.getString("screen_name_table")%>
-                              </th>
-                              <th data-field="tweet" data-formatter="twitterFormatter">
-                                <%=res.getString("message_table")%>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <% } %>
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 
           </div>
         </div>
@@ -393,7 +254,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
     return span;
   }
 
-<<<<<<< HEAD
 
   function millisecondsToStr (milliseconds) {
     // TIP: to find current time in milliseconds, use:
@@ -507,17 +367,12 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
         dataType: 'json',
         timeout: 30000,
       });
-=======
-  function twitterFormatter(value) {
-  	return '<a target="_blank" href="' + value.link + '">' + value.message + '</a>';
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
   }
 
 
   function setupTwitterEventSource(IdNum) {
     if (typeof(EventSource) !== 'undefined') {
       // Remove all the entries from the table
-<<<<<<< HEAD
       var tableId = '#table-tweets' + IdNum;
 
       $(tableId).bootstrapTable({
@@ -533,36 +388,25 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
       	]
       });
 
-=======
-      var tableId = '#table' + IdNum;
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
       $(tableId).bootstrapTable('load', []);
 
 	  var enable = $('#translation').val();
 
-<<<<<<< HEAD
       var jsonData = $('#accordion-item' + IdNum).data('station');
       var station = JSON.parse(jsonData);
 
       var source = new EventSource('Twitter?station=' + station.name + '&enable=' + enable);
-=======
-      var jsonData = $('#accordion' + IdNum).data('book');
-      var book = JSON.parse(jsonData);
-
-      var source = new EventSource('Twitter?title=' + book.title + '&author=' + book.author + '&enable=' + enable);
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 
       source.onmessage = function(event) {
         var tweet = JSON.parse(event.data);
 
-<<<<<<< HEAD
         $(tableId).bootstrapTable('append', [{
         		screenName: tweet.screenName,
         		tweet: tweet.tweet.message}]);
       };
 
       source.onerror = function(event) {
-      	// alert('<%=res.getString("closed")%>');
+      	alert('<%=res.getString("closed")%>');
       };
 
       source.addEventListener('finished', function(event) {
@@ -570,42 +414,20 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
       },false);
 
       } else {
-      	// alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
-=======
-        $(tableId).bootstrapTable('append', [tweet]);
-      };
-
-      source.onerror = function(event) {
-      	alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("closed"))%>');
-      };
-
-      source.addEventListener('finished', function(event) {
-        source.close();
-      }, false);
-    } else {
-      alert(form.jsp);
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
+      	alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
     }
     return false;
   }
 
 
-<<<<<<< HEAD
   function setupConceptEventSource(url) {
-=======
-  function setupConceptEventSource(IdNum, url) {
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
     if (typeof(EventSource) !== 'undefined') {
       var enable = $('#translation').val();
       var words = new Array();
       var source = new EventSource('Concept?url=' + url + '&enable=' + enable);
 
       // Cleanup the word cloud list
-<<<<<<< HEAD
       $('#cloud').empty();
-=======
-      $('#cloud' + IdNum).empty();
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 
       source.onmessage = function(event) {
         var concept = JSON.parse(event.data);
@@ -616,26 +438,15 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
       };
 
       source.onerror = function(event) {
-<<<<<<< HEAD
       	alert('<%=res.getString("closed")%>');
-=======
-      	alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("closed"))%>');
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
       };
 
       source.addEventListener('finished', function(event) {
         for (i = 0; i < words.length; ++i) {
-<<<<<<< HEAD
           $('#cloud').append('<span class="word-cloud" count="' + (words[i].weight * 100 | 0) + '">' + words[i].text + '</span>');
         }
 
         $('#cloud').jqTagCloud({
-=======
-          $('#cloud' + IdNum).append('<span class="word-cloud" count="' + (words[i].weight * 100 | 0) + '">' + words[i].text + '</span>');
-        }
-
-        $('#cloud' + IdNum).jqTagCloud({
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
           maxSize: 32,
           minSize: 14
         });
@@ -650,17 +461,10 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
 
   function setupSentimentEventSource(IdNum) {
     if (typeof(EventSource) !== 'undefined') {
-<<<<<<< HEAD
       var jsonData = $('#accordion-item' + IdNum).data('station');
       var station = JSON.parse(jsonData);
 
       var source = new EventSource('Sentiment?station=' + station.name);
-=======
-      var jsonData = $('#accordion' + IdNum).data('book');
-      var book = JSON.parse(jsonData);
-
-      var source = new EventSource('Sentiment?title=' + book.title + '&author=' + book.author);
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
 
       source.onmessage = function(event) {
         var sentiment = JSON.parse(event.data);
@@ -674,146 +478,45 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
       };
 
       source.onerror = function(event) {
-<<<<<<< HEAD
-      	// alert('<%=res.getString("closed")%>');
-=======
-      	alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("closed"))%>');
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
+      	alert('<%=res.getString("closed")%>');
       };
 
       source.addEventListener('finished', function(event) {
         source.close();
       }, false);
     } else {
-<<<<<<< HEAD
-      // alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
-=======
-      alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
-    }
-    return false;
-  }
-
-<<<<<<< HEAD
-=======
-  function setupReviewEventSource(IdNum) {
-    if (typeof(EventSource) !== 'undefined') {
-      // Remove all the entries from the table
-      var tableId = '#criticTable' + IdNum;
-      $(tableId).bootstrapTable('load', []);
-
-      var enable = $('#translation').val();
-      var jsonData = $('#accordion' + IdNum).data('book');
-      var book = JSON.parse(jsonData);
-      var source = new EventSource('Review?title=' + book.title + '&enable=' + enable);
-
-      source.onmessage = function(event) {
-        var review = JSON.parse(event.data);
-        $(tableId).bootstrapTable('append', [review]);
-      };
-
-      source.onerror = function(event) {
-      	alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("closed"))%>');
-      };
-
-      source.addEventListener('synopsis', function(event) {
-      	var synopsisLink = JSON.parse(event.data);
-      	setupConceptEventSource(IdNum, synopsisLink.synopsis_link);
-      }, false);
-
-      source.addEventListener('finished', function(event) {
-        source.close();
-        var reviews = $(tableId).bootstrapTable('getData');
-      }, false);
-    } else {
       alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
     }
     return false;
   }
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
+
 
   // Load the translated string to show in the table when there is no data
   $.extend($.fn.bootstrapTable.defaults, {
   	formatNoMatches: function() {
-<<<<<<< HEAD
             return '<%=res.getString("no_data")%>';
-=======
-            return '<%=StringEscapeUtils.escapeJavaScript(res.getString("no_data"))%>';
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
         }
     });
 
   // wait for the DOM to be loaded
   $(document).ready(function() {
 
-<<<<<<< HEAD
-=======
-    var currentDate = new Date();
-    var mm = currentDate.getMonth();
-    var dd = currentDate.getDate();
-    var yyyy = currentDate.getFullYear();
-
-    $('#datePicker').datepicker({
-      language: '<%=request.getLocale().toLanguageTag()%>',
-      autoclose: true,
-      orientation: "top",
-      endDate: currentDate
-    });
-
-    $('#datePicker').datepicker('setDate', new Date(yyyy, mm, dd));
-
-    $('#datePicker').on('changeDate', function(e) {
-      currentDate = new Date(e.date);
-      $('#bestSellerList').trigger("change");
-    });
-
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
     $('#translation').change(function() {
       $('#bestSellerList').trigger("change");
     });
 
     // When an accordion panel is opened make the request for the details
     $('#accordion').on('show.bs.collapse', function(e) {
-<<<<<<< HEAD
       // Determine which accordion panel is open
       var IdNum = $('#' + e.target.id).data('number');
       setupTrains(IdNum);
       setupTwitterEventSource(IdNum);
       setupSentimentEventSource(IdNum);
-=======
-      var IdNum = $('#' + e.target.id).data('number');
-      var jsonData = $('#accordion' + IdNum).data('book');
-      var book = JSON.parse(jsonData);
-      
-      var enable = $('#translation').val();
-      
-      // Add the description to the accordion panel
-      if(enable === 'true') {
-      	$.post('Watson', 
-      		{text: book.description}, 
-      		function(data, status) {
-      			if(status === 'success') {
-      				$('#description' + IdNum).text(data);
-      			}
-      			else {
-      				alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("closed"))%>');
-      			}	
-      		});
-      }
-      else {
-      	$('#description' + IdNum).text(book.description);
-      }
-      
-      setupTwitterEventSource(IdNum);
-      setupSentimentEventSource(IdNum);
-      setupReviewEventSource(IdNum);
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
     });
 
     // Initialize the select picker list
     $('.selectpicker').selectpicker();
 
-<<<<<<< HEAD
     // Find the base template panel for the accordion
     var $template = $(".template");
 
@@ -838,39 +541,10 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
       			// Show the loading gif
       			$('#ajax_loader').show();
       			// Hide the list of while we are updating
-=======
-    // Listen for the selection of the best sellers list
-    $('#bestSellerList').change(function() {
-      var list = $('#bestSellerList').val();
-
-      // If we have a selected item
-      if(list !== "") {
-      	var mm = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-      	var dd = ('0' + currentDate.getDate()).slice(-2);
-      	var yyyy = currentDate.getFullYear();
-      	var selectedDate = yyyy + '-' + mm + '-' + dd;
-
-      	// Close any open panel before getting a list
-      	$('.panel-collapse.in').each(function() {
-        	$(this).collapse('hide');
-      	});
-
-      	// Call the servlet to get back the books for a list
-      	$.ajax({
-        	url: 'BestSellers',
-      		type: 'GET',
-      		data: {list: list,
-      		   	date: selectedDate},
-      		beforeSend: function() {
-      			// Show the loading gif
-      			$('#ajax_loader').show();
-      			// Hide the list of boxes while we are updating
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
       			$('#accordion').hide();
       		},
         	success: function(data) {
         		for (var i = 0; i < data.length; ++i) {
-<<<<<<< HEAD
 
         		    var $newPanel = $template.clone();
     				$newPanel.find(".collapse").removeClass("in");
@@ -896,26 +570,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
         	},
         	error: function(xhr) {
         		alert('<%=res.getString("ny_mta_error")%>');
-=======
-          			var title = data[i].book_details[0].title;
-          			var author = data[i].book_details[0].author;
-          			var weeks = data[i].weeks_on_list;
-
-          			// Update the archor tag with the book info
-          			$('#anchor' + i).text(title + ' \u2014 ' + author);
-
-          			$('#weeks' + i).text(weeks);
-
-          			// Place the book object into the data-book HTML attribute
-          			var value = JSON.stringify(data[i].book_details[0]);
-          			$('#accordion' + i).data('book', value);
-        		}
-        		// Show the list of books
-        		$('#accordion').show();
-        	},
-        	error: function(xhr) {
-        		alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("ny_times_error"))%>');
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
         	},
         	complete: function() {
         		// Hide the loading gif
@@ -924,10 +578,7 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.translation", request.get
         	dataType: 'json',
         	timeout: 30000,
       	});
-<<<<<<< HEAD
 
-=======
->>>>>>> 26e597c0eed02d4f403c8d9a70f4c27d74f1c6a2
       }
 
     });
