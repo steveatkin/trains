@@ -188,19 +188,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
 
                     <div class="row-fluid">
                       <div class="col-md-12 column-white">
-                        <span class="label label-primary"><%=res.getString("sentiment")%></span>
-                          <p>
-                           <span class="badge badge-positive" id="badgePositive">0</span>
-                          <br>
-                          <span class="badge badge-neutral" id="badgeNeutral">0</span>
-                          <br>
-                          <span class="badge badge-negative" id="badgeNegative">0</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="row-fluid">
-                      <div class="col-md-12 column-white">
                         <span class="label label-primary"><%=res.getString("trains")%></span>
                              <table data-toggle="table" class="table" id="table-trains">
                         </table>
@@ -246,11 +233,15 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
   function polarityFormatter(value) {
   	var span = "";
 
-    if (value === 'Positive') {
+    if (value === "POSITIVE") {
     	span = "<span class='badge badge-positive'>+</span>";
-    } else if (value === "Negative") {
+    } else if (value === "NEGATIVE") {
         span = "<span class='badge badge-negative'>-</span>";
     }
+    else {
+        span = "<span class='badge badge-neutral'>?</span>";
+    }
+
     return span;
   }
 
@@ -384,7 +375,12 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
       		{
       			field: "tweet",
       			title: "<%=res.getString("message_table")%>"
-      		}
+      		},
+          {
+            field: "sentiment",
+            title: "<%=res.getString("sentiment_label")%>",
+            formatter: "polarityFormatter"
+          }
       	]
       });
 
@@ -402,7 +398,8 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
 
         $(tableId).bootstrapTable('append', [{
         		screenName: tweet.screenName,
-        		tweet: tweet.tweet.message}]);
+        		tweet: tweet.tweet.message,
+            sentiment: tweet.tweet.sentiment}]);
       };
 
       source.onerror = function(event) {
@@ -458,39 +455,7 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
     return false;
   }
 
-
-  function setupSentimentEventSource(IdNum) {
-    if (typeof(EventSource) !== 'undefined') {
-      var jsonData = $('#accordion-item' + IdNum).data('station');
-      var station = JSON.parse(jsonData);
-
-      var source = new EventSource('Sentiment?station=' + station.name);
-
-      source.onmessage = function(event) {
-        var sentiment = JSON.parse(event.data);
-        if (sentiment.sentiment == "positive") {
-          $('#badgePositive' + IdNum).text(sentiment.count);
-        } else if (sentiment.sentiment === "negative") {
-          $('#badgeNegative' + IdNum).text(sentiment.count);
-        } else if (sentiment.sentiment === "neutral") {
-          $('#badgeNeutral' + IdNum).text(sentiment.count);
-        }
-      };
-
-      source.onerror = function(event) {
-      	alert('<%=res.getString("closed")%>');
-      };
-
-      source.addEventListener('finished', function(event) {
-        source.close();
-      }, false);
-    } else {
-      alert('<%=StringEscapeUtils.escapeJavaScript(res.getString("sse_error"))%>');
-    }
-    return false;
-  }
-
-
+  
   // Load the translated string to show in the table when there is no data
   $.extend($.fn.bootstrapTable.defaults, {
   	formatNoMatches: function() {
@@ -511,7 +476,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
       var IdNum = $('#' + e.target.id).data('number');
       setupTrains(IdNum);
       setupTwitterEventSource(IdNum);
-      setupSentimentEventSource(IdNum);
     });
 
     // Initialize the select picker list
@@ -554,9 +518,6 @@ ResourceBundle res = ResourceBundle.getBundle("com.ibm.trains", request.getLocal
       					.text(data[i].name);
       				$newPanel.find(".panel-collapse").data("number", i);
       				$newPanel.find(".panel-collapse").attr("id", "accordion-item" + (i)).addClass("collapse").removeClass("in");
-      				$newPanel.find("#badgePositive").attr("id", "badgePositive" + (i));
-      				$newPanel.find("#badgeNeutral").attr("id", "badgeNeutral" + (i));
-      				$newPanel.find("#badgeNegative").attr("id", "badgeNegative" + (i));
       				$newPanel.find("#table-tweets").attr("id", "table-tweets" + (i));
       				$newPanel.find("#table-trains").attr("id", "table-trains" + (i));
 
